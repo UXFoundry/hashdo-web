@@ -13,7 +13,7 @@ module.exports = {
       }
     }
     
-    HashDo.card.webhook({
+    HashDo.card.webHook({
       directory: process.env.CARDS_DIRECTORY,
       packName: req.params.pack,
       cardName: req.params.card,

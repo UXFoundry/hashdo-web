@@ -31,7 +31,7 @@ exports.get = function (req, res) {
   var inputValues = req.query; 
   inputValues.ipAddress = getIpAddress(req);
   
-  HashDo.card.render({
+  HashDo.card.generateCard({
     url: req.url,
     directory: process.env.CARDS_DIRECTORY, 
     packName: req.params.pack,
