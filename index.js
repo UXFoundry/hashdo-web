@@ -14,7 +14,7 @@ module.exports = {
     // Set environment variables.
     process.env.BASE_URL = baseUrl || '';
     process.env.FIREBASE_URL = firebaseUrl || 'https://hashdodemo.firebaseio.com/',
-    process.env.CARDS_DIRECTORY = cardsDirectory || '.';
+    process.env.CARDS_DIRECTORY = cardsDirectory || process.cwd();
     process.env.PORT = port || 4000;
     
     var Path = require('path'),
@@ -35,12 +35,11 @@ module.exports = {
     });
     
     // Assume cards directory is based off root if a full path is not provided.
-    cardsDirectory = cardsDirectory || process.cwd();
-    if (cardsDirectory && !Path.isAbsolute(cardsDirectory)) {
-      cardsDirectory = Path.join(process.cwd(), cardsDirectory);
+    if (!Path.isAbsolute(process.env.CARDS_DIRECTORY)) {
+      process.env.CARDS_DIRECTORY = Path.join(process.cwd(), process.env.CARDS_DIRECTORY);
     }
     
-    HashDo.packs.init(baseUrl, cardsDirectory);
+    HashDo.packs.init(baseUrl, process.env.CARDS_DIRECTORY);
 
     // Make public card directories static
     HashDo.packs.cards().forEach(function (card) {
