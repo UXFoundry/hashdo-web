@@ -27,7 +27,7 @@ exports.post = function (req, res) {
 };
 
 exports.get = function (req, res) {  
-  // Add the ip address 
+  // Add the IP address 
   var inputValues = req.query; 
   inputValues.ipAddress = getIpAddress(req);
   
@@ -43,7 +43,14 @@ exports.get = function (req, res) {
       Utils.respond(req, res, 200, html);
     }
     else {
-      Utils.respond(req, res, 500, err);
+      // Suppress the error from the user in production.
+      console.log(process.env.NODE_ENV);
+      if (process.env.NODE_ENV === 'production') {
+        Utils.respond(req, res, 500, '');
+      }
+      else {
+        Utils.respond(req, res, 500, err);
+      }
     }
   });
 };
