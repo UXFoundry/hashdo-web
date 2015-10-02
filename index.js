@@ -57,11 +57,19 @@ module.exports = {
       JsonParser = BodyParser.json({
         strict: false
       });
+    
+    // Disable caching middleware.  
+    var nocache = function (req, res, next) {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      next();
+    }
 
     // Setup routes late to give implementers routes higher priority and allow middleware as well.
-    App.get('/api/count', APIController.count);
-    App.get('/api/cards', APIController.cards);
-    App.get('/api/card', APIController.card);
+    App.get('/api/count', nocache, APIController.count);
+    App.get('/api/cards', nocache, APIController.cards);
+    App.get('/api/card', nocache, APIController.card);
     
     App.post('/api/card/state/save', APIController.saveState);
     App.post('/api/card/analytics', APIController.recordAnalyticEvents);
