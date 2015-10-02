@@ -23,6 +23,11 @@ module.exports = {
 
     App.use(Favicon(Path.join(__dirname, '/public/favicon.ico')));
     App.use(Express.static('public'));
+    // Hacky, quick fix required for now.
+    // **********************************
+    App.use('/js', Express.static(Path.join(__dirname, '/node_modules/hashdo/public/js')));
+    App.use('/css', Express.static(Path.join(__dirname, '/node_modules/hashdo/public/css')));
+    // **********************************
     App.use(BodyParser.urlencoded({extended: false}));
     App.use(Hpp());
     
