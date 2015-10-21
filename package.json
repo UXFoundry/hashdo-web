@@ -19,7 +19,7 @@
     "async": "1.4.2",
     "body-parser": "1.14.1",
     "express": "4.13.3",
-    "hashdo": "0.10.7",
+    "hashdo": "^0.10.7",
     "hpp": "0.2.0",
     "lodash": "3.10.1",
     "safe-json-parse": "4.0.0",
