@@ -6,6 +6,7 @@
 var HashDo = require('hashdo'),
   BodyParser = require('body-parser'),
   Express = require('express'),
+  Cors = require('cors'),
   App = Express();
 
 module.exports = {
@@ -56,14 +57,7 @@ module.exports = {
     // **********************************
     App.use(BodyParser.urlencoded({extended: false}));
     App.use(Hpp());
-    
-    // CORS support
-    App.all('*', function (req, res, next) {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET, POST');
-      res.header('Access-Control-Allow-Headers', 'Content-Type');
-      next();
-    });
+    App.use(Cors());
     
     // Assume cards directory is based off root if a full path is not provided.
     if (!Path.isAbsolute(process.env.CARDS_DIRECTORY)) {
