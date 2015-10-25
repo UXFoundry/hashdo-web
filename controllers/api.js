@@ -72,25 +72,27 @@ module.exports = {
   saveState: function (req, res) {
     var apiKey = req.body.apiKey,
       cardKey = req.body.cardKey;
-  
+
     SafeParse(req.body.state, function (err, state) {
       if (!err) {
         DB.validateAPIKey(cardKey, apiKey, function (err, isValid) {
           if (isValid) {
-            DB.saveCardState(cardKey, state, function (err) {
-              if (err) {
-                res.status(500);
-                res.send({
-                  error: true,
-                  message: err.message || err
-                });
-              }
-              else {
-                res.status(200);
-                res.send({
-                  success: true
-                });
-              }
+            DB.getCardState(cardKey, null, function (err, currentCardState) {
+              DB.saveCardState(cardKey, HashDo.utils.deepMerge(true, true, currentCardState || {}, state), function (err) {
+                if (err) {
+                  res.status(500);
+                  res.send({
+                    error: true,
+                    message: err.message || err
+                  });
+                }
+                else {
+                  res.status(200);
+                  res.send({
+                    success: true
+                  });
+                }
+              });
             });
           }
           else {
