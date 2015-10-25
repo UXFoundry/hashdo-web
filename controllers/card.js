@@ -44,7 +44,6 @@ exports.get = function (req, res) {
     }
     else {
       // Suppress the error from the user in production.
-      console.log(process.env.NODE_ENV);
       if (process.env.NODE_ENV === 'production') {
         Utils.respond(req, res, 500, '');
       }
