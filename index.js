@@ -88,6 +88,7 @@ module.exports = {
       PackController = require('./controllers/pack'),
       CardController = require('./controllers/card'),
       WebHookController = require('./controllers/webhook'),
+      ProxyController = require('./controllers/proxy'),
       JsonParser = BodyParser.json({
         strict: false
       });
@@ -106,6 +107,7 @@ module.exports = {
     App.get('/api/card', nocache, APIController.card);
     
     App.post('/api/card/state/save', APIController.saveState);
+    App.post('/api/card/proxy/post', ProxyController.post);
     App.post('/api/card/analytics', APIController.recordAnalyticEvents);
     
     // Web Hooks
