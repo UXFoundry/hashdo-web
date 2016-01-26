@@ -107,9 +107,11 @@ module.exports = {
     App.get('/api/card', nocache, APIController.card);
     
     App.post('/api/card/state/save', APIController.saveState);
-    App.post('/api/card/proxy/post', ProxyController.post);
     App.post('/api/card/analytics', APIController.recordAnalyticEvents);
-    
+
+    // Proxy
+    App.post('/proxy/:pack/:card', ProxyController.post);
+
     // Web Hooks
     App.post('/webhook/:pack/:card', WebHookController.process);
     

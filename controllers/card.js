@@ -1,20 +1,6 @@
 var HashDo = require('hashdo'),
   Utils = require('../lib/utils');
 
-function getIpAddress(req) {
-  // IP address
-  var ip = req.headers['x-forwarded-for'];
-  if (ip) {
-    // Found the client IP forwarded for a proxy, take the first one (http://stackoverflow.com/a/19524949/564726).
-    return ip.split(',')[0];
-  }
-  else {
-    return req.connection.remoteAddress ||
-      req.socket.remoteAddress ||
-      req.connection.socket.remoteAddress;
-  }
-}
-
 exports.post = function (req, res) {
   HashDo.card.secureInputs(req.params.pack, req.params.card, req.body, function (err, token) {
     if (!err) {
@@ -27,9 +13,11 @@ exports.post = function (req, res) {
 };
 
 exports.get = function (req, res) {  
-  // Add the IP address 
-  var inputValues = req.query; 
-  inputValues.ipAddress = getIpAddress(req);
+  var inputValues = req.query;
+
+  if (inputValues) {
+    inputValues.ipAddress = Utils.getIPAddress(req);
+  }
   
   HashDo.card.generateCard({
     url: req.url,
