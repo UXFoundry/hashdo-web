@@ -47,7 +47,7 @@ module.exports = {
                 if (!err) {
                   params = _.extend(params, inputs);
 
-                  Request.post({url: endpoint, form: params}, function (err, httpResponse, body) {
+                  Request.post({url: endpoint, form: params, json: true}, function (err, response, body) {
                     if (err) {
                       res.status(500);
                       res.send({
