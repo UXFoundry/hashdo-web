@@ -55,7 +55,7 @@ module.exports = {
     App.use('/js', Express.static(Path.join(__dirname, '/node_modules/hashdo/public/js')));
     App.use('/css', Express.static(Path.join(__dirname, '/node_modules/hashdo/public/css')));
     // **********************************
-    App.use(BodyParser.urlencoded({extended: false}));
+    App.use(BodyParser.urlencoded({extended: false, limit: '5mb'}));
     App.use(Hpp());
     App.use(Cors());
     
@@ -89,9 +89,7 @@ module.exports = {
       CardController = require('./controllers/card'),
       WebHookController = require('./controllers/webhook'),
       ProxyController = require('./controllers/proxy'),
-      JsonParser = BodyParser.json({
-        strict: false
-      });
+      JsonParser = BodyParser.json({strict: false});
     
     // Disable caching middleware.  
     var nocache = function (req, res, next) {
@@ -114,7 +112,7 @@ module.exports = {
 
     // Web Hooks
     App.post('/webhook/:pack/:card', WebHookController.process);
-    
+
     // Card Routes
     App.post('/:pack/:card', JsonParser, CardController.post);
     App.get('/:pack/:card', CardController.get);
