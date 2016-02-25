@@ -121,6 +121,44 @@ module.exports = {
     });
   },
 
+  clearState: function (req, res) {
+    var apiKey = req.body.apiKey,
+      cardKey = req.body.cardKey;
+
+    DB.validateAPIKey(cardKey, apiKey, function (err, isValid) {
+      if (isValid) {
+        DB.saveCardState(cardKey, {}, function (err) {
+          if (err) {
+            res.status(500);
+            res.send({
+              error: true,
+              message: err.message || err
+            });
+          }
+          else {
+            res.status(200);
+            res.send({
+              success: true
+            });
+          }
+        });
+      }
+      else {
+        var errorMessage = 'Invalid #Do API Key';
+
+        if (err) {
+          errorMessage = errorMessage + ' - ' + (err.message || err);
+        }
+
+        res.status(400);
+        res.send({
+          error: true,
+          message: errorMessage
+        });
+      }
+    });
+  },
+
   recordAnalyticEvents: function (req, res) {
     var apiKey = req.body.apiKey,
       cardKey = req.body.cardKey,

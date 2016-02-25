@@ -105,6 +105,7 @@ module.exports = {
     App.get('/api/card', nocache, APIController.card);
     
     App.post('/api/card/state/save', APIController.saveState);
+    App.post('/api/card/state/clear', APIController.clearState);
     App.post('/api/card/analytics', APIController.recordAnalyticEvents);
 
     // Proxy
