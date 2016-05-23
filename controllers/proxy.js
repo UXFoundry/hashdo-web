@@ -31,6 +31,7 @@ module.exports = {
         var apiKey = req.body.apiKey,
           cardKey = req.body.cardKey,
           endpoint = req.body.endpoint,
+          isJSON = req.body.json,
           DB = HashDo.db;
 
         if (!endpoint) {
@@ -47,7 +48,19 @@ module.exports = {
                 if (!err) {
                   params = _.extend(params, inputs);
 
-                  Request.post({url: endpoint, form: params, json: true}, function (err, response, body) {
+                  var args = {
+                    url: endpoint,
+                    json: true
+                  };
+
+                  if (isJSON) {
+                    args.json = params;
+                  }
+                  else {
+                    args.form = params;
+                  }
+
+                  Request.post(args, function (err, response, body) {
                     if (err) {
                       res.status(500);
                       res.send({
