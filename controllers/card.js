@@ -1,5 +1,9 @@
 var HashDo = require('hashdo'),
-  Utils = require('../lib/utils');
+  Utils = require('../lib/utils'),
+  VM = require('vm2').NodeVM,
+
+  isProduction = process.env.NODE_ENV === 'production',
+  cardsDirectory = process.env.CARDS_DIRECTORY;
 
 exports.post = function (req, res) {
   HashDo.card.secureInputs(req.params.pack, req.params.card, req.body, function (err, token) {
@@ -7,7 +11,7 @@ exports.post = function (req, res) {
       Utils.respond(req, res, 200, token);
     }
     else {
-      Utils.respond(req, res, 500, err);        
+      Utils.respond(req, res, 500, err);
     }
   });
 };
@@ -18,27 +22,35 @@ exports.get = function (req, res) {
   if (inputValues) {
     inputValues.ipAddress = Utils.getIPAddress(req);
   }
-  
-  HashDo.card.generateCard({
+
+  // input params
+  var params = {
     url: req.url,
-    directory: process.env.CARDS_DIRECTORY, 
+    directory: cardsDirectory,
     packName: req.params.pack,
     cardName: req.params.card,
     inputValues: inputValues
-  },
-  function (err, html) {
-    if (!err) {
-      Utils.respond(req, res, 200, html);
+  };
+
+  // callback
+  var cb = function (err, html) {
+    if (err) {
+      Utils.respond(req, res, 500, isProduction ? '' : err);
     }
     else {
-      // Suppress the error from the user in production.
-      if (process.env.NODE_ENV === 'production') {
-        Utils.respond(req, res, 500, '');
-      }
-      else {
-        Utils.respond(req, res, 500, err);
-      }
+      Utils.respond(req, res, 200, html);
+    }
+  };
+
+  vm = new VM({
+    console: 'inherit',
+    require: true,
+    sandbox: {
+      HashDo: HashDo
     }
   });
+  
+  var vmFunc = vm.run('module.exports = HashDo.card.generateCard;');
+  vmFunc(params, cb);
 };
 
