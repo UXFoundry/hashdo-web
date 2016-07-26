@@ -1,7 +1,7 @@
 {
   "name": "hashdo-web",
   "description": "Expose #Do functionality through a web API.",
-  "version": "0.1.62",
+  "version": "0.1.64",
   "author": "HashDo <info@hashdo.com>",
   "license": "Apache-2.0",
   "keywords": [
@@ -16,14 +16,14 @@
     "url": "https://github.com/UXFoundry/hashdo-web/issues"
   },
   "dependencies": {
-    "async": "2.0.0",
+    "async": "2.0.1",
     "body-parser": "1.15.2",
     "cors": "2.7.1",
     "express": "4.14.0",
-    "hashdo": "0.10.55",
+    "hashdo": "0.10.57",
     "hpp": "0.2.1",
-    "lodash": "4.13.1",
-    "request": "2.73.0",
+    "lodash": "4.14.0",
+    "request": "2.74.0",
     "safe-json-parse": "4.0.0",
     "serve-favicon": "2.3.0",
     "vm2": "3.0.1"
@@ -36,7 +36,7 @@
     "gulp-jsbeautifier": "2.0.3",
     "gulp-jshint": "2.0.1",
     "gulp-load-plugins": "1.2.4",
-    "gulp-watch": "4.3.8",
+    "gulp-watch": "4.3.9",
     "jshint": "2.9.2",
     "jshint-stylish": "2.2.0"
   },
