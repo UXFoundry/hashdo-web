@@ -1,7 +1,7 @@
 {
   "name": "hashdo-web",
   "description": "Expose #Do functionality through a web API.",
-  "version": "0.1.64",
+  "version": "0.1.65",
   "author": "HashDo <info@hashdo.com>",
   "license": "Apache-2.0",
   "keywords": [
@@ -20,25 +20,25 @@
     "body-parser": "1.15.2",
     "cors": "2.7.1",
     "express": "4.14.0",
-    "hashdo": "0.10.57",
+    "hashdo": "0.10.58",
     "hpp": "0.2.1",
-    "lodash": "4.14.0",
+    "lodash": "4.15.0",
     "request": "2.74.0",
     "safe-json-parse": "4.0.0",
     "serve-favicon": "2.3.0",
     "vm2": "3.0.1"
   },
   "devDependencies": {
-    "del": "2.2.1",
+    "del": "2.2.2",
     "gulp": "gulpjs/gulp#4.0",
-    "gulp-bump": "2.2.0",
+    "gulp-bump": "2.4.0",
     "gulp-doxx": "0.0.5",
     "gulp-jsbeautifier": "2.0.3",
     "gulp-jshint": "2.0.1",
     "gulp-load-plugins": "1.2.4",
     "gulp-watch": "4.3.9",
-    "jshint": "2.9.2",
-    "jshint-stylish": "2.2.0"
+    "jshint": "2.9.3",
+    "jshint-stylish": "2.2.1"
   },
   "engines": {
     "node": ">=0.12.0"
