@@ -1,6 +1,5 @@
 var HashDo = require('hashdo'),
-  Utils = require('../lib/utils'),
-  VM = require('vm2').NodeVM,
+  Utils = require('../lib/utils');
 
   isProduction = process.env.NODE_ENV === 'production',
   cardsDirectory = process.env.CARDS_DIRECTORY;
@@ -35,22 +34,13 @@ exports.get = function (req, res) {
   // callback
   var cb = function (err, html) {
     if (err) {
-      Utils.respond(req, res, 500, isProduction ? '' : err);
+      Utils.respond(req, res, 200, '');
     }
     else {
       Utils.respond(req, res, 200, html);
     }
   };
 
-  vm = new VM({
-    console: 'inherit',
-    require: true,
-    sandbox: {
-      HashDo: HashDo
-    }
-  });
-  
-  var vmFunc = vm.run('module.exports = HashDo.card.generateCard;');
-  vmFunc(params, cb);
+  HashDo.card.generateCard(params, cb);
 };
 
