@@ -50,7 +50,8 @@ module.exports = {
 
                   var args = {
                     url: endpoint,
-                    json: true
+                    json: true,
+                    timeout: 10000
                   };
 
                   if (isJSON) {
