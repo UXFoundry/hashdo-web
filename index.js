@@ -6,6 +6,7 @@
 var HashDo = require('hashdo'),
   BodyParser = require('body-parser'),
   Express = require('express'),
+  Timeout = require('connect-timeout'),
   Cors = require('cors'),
   App = Express();
 
@@ -48,6 +49,7 @@ module.exports = {
       Favicon = require('serve-favicon'),
       Hpp = require('hpp');
 
+    App.use(Timeout('10s'));
     App.use(Favicon(Path.join(__dirname, '/public/favicon.ico')));
     App.use(Express.static('public'));
     // Hacky, quick fix required for now.
@@ -58,6 +60,11 @@ module.exports = {
     App.use(BodyParser.urlencoded({extended: false, limit: '5mb'}));
     App.use(Hpp());
     App.use(Cors());
+    App.use(haltOnTimedout);
+
+    function haltOnTimedout(req, res, next){
+      if (!req.timedout) next();
+    }
     
     // Assume cards directory is based off root if a full path is not provided.
     if (!Path.isAbsolute(process.env.CARDS_DIRECTORY)) {
@@ -146,6 +153,7 @@ module.exports = {
       }
       else {
         console.log('WEB: Starting web server on port %d...', process.env.PORT);
+        
         App.listen(process.env.PORT, function () {
           console.log();
           console.log('Let\'s #Do');
