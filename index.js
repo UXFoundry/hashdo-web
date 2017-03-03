@@ -127,7 +127,7 @@ module.exports = {
     
     App.get('/:pack', PackController);
     App.get('/', DefaultController);
-    
+
     var exit = function () {
       HashDo.db.disconnect(function () {
         process.exit(0);

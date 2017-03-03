@@ -8,6 +8,8 @@ module.exports = {
   post: function (req, res) {
     var inputValues = req.query;
 
+    if (req.timedout) return;
+
     if (inputValues) {
       inputValues.ipAddress = Utils.getIPAddress(req);
     }
