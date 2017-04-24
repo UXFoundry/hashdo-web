@@ -1,7 +1,7 @@
 {
   "name": "hashdo-web",
   "description": "Expose #Do functionality through a web API.",
-  "version": "0.1.87",
+  "version": "0.1.89",
   "author": "HashDo <info@hashdo.com>",
   "license": "Apache-2.0",
   "keywords": [
@@ -21,7 +21,7 @@
     "connect-timeout": "1.8.0",
     "cors": "2.8.3",
     "express": "4.15.2",
-    "hashdo": "0.10.69",
+    "hashdo": "0.10.71",
     "hpp": "0.2.2",
     "lodash": "4.17.4",
     "request": "2.81.0",
