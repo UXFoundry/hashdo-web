@@ -1,7 +1,7 @@
 {
   "name": "hashdo-web",
   "description": "Expose #Do functionality through a web API.",
-  "version": "0.1.89",
+  "version": "0.1.90",
   "author": "HashDo <info@hashdo.com>",
   "license": "Apache-2.0",
   "keywords": [
@@ -16,12 +16,12 @@
     "url": "https://github.com/UXFoundry/hashdo-web/issues"
   },
   "dependencies": {
-    "async": "2.3.0",
+    "async": "2.4.0",
     "body-parser": "1.17.1",
     "connect-timeout": "1.8.0",
     "cors": "2.8.3",
     "express": "4.15.2",
-    "hashdo": "0.10.71",
+    "hashdo": "0.10.72",
     "hpp": "0.2.2",
     "lodash": "4.17.4",
     "request": "2.81.0",
