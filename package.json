@@ -1,13 +1,10 @@
 {
   "name": "hashdo-web",
   "description": "Expose #Do functionality through a web API.",
-  "version": "0.1.91",
+  "version": "0.1.92",
   "author": "HashDo <info@hashdo.com>",
   "license": "Apache-2.0",
-  "keywords": [
-    "hashdo",
-    "cards"
-  ],
+  "keywords": ["hashdo", "cards"],
   "repository": {
     "type": "git",
     "url": "https://github.com/UXFoundry/hashdo-web.git"
@@ -16,28 +13,28 @@
     "url": "https://github.com/UXFoundry/hashdo-web/issues"
   },
   "dependencies": {
-    "async": "2.4.1",
-    "body-parser": "1.17.2",
+    "async": "2.5.0",
+    "body-parser": "1.18.2",
     "connect-timeout": "1.9.0",
-    "cors": "2.8.3",
-    "express": "4.15.3",
-    "hashdo": "0.10.73",
+    "cors": "2.8.4",
+    "express": "4.16.2",
+    "hashdo": "0.10.74",
     "hpp": "0.2.2",
     "lodash": "4.17.4",
-    "request": "2.81.0",
+    "request": "2.83.0",
     "safe-json-parse": "4.0.0",
-    "serve-favicon": "2.4.3"
+    "serve-favicon": "2.4.5"
   },
   "devDependencies": {
     "del": "3.0.0",
     "gulp": "gulpjs/gulp#4.0",
-    "gulp-bump": "2.7.0",
+    "gulp-bump": "2.8.0",
     "gulp-doxx": "0.0.5",
     "gulp-jsbeautifier": "2.1.1",
     "gulp-jshint": "2.0.4",
     "gulp-load-plugins": "1.5.0",
     "gulp-watch": "4.3.11",
-    "jshint": "2.9.4",
+    "jshint": "2.9.5",
     "jshint-stylish": "2.2.1"
   },
   "engines": {
